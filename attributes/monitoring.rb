@@ -30,6 +30,8 @@ when "centos", "redhat"
   when /^6\..+/
     set_unless[:rightscale][:collectd_packages_version] = "latest"
   end
+when "mac_os_x"
+    ::Chef::Log.warn("Could not determine RightScale monitoring attributes for #{node[:platform]}, don't run rightscale::setup_monitoring if you know what's good for you")
 else
   raise "Unrecognized distro #{node[:platform]} for monitoring attributes , exiting "
 end
